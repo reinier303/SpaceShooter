@@ -19,18 +19,28 @@ public class EnemyEditor : EditorWindow
 {
     private static List<GameObject> prefabs = new List<GameObject>();
 
-    private static Object[] prefabsToLoad = Resources.LoadAll("Enemies", typeof(GameObject));
+    private static Object[] prefabsToLoad;
     private static Dictionary<string, EnemyData> enemyDatas = new Dictionary<string, EnemyData>();
+
+    private Vector2 scrollPos;
 
     [MenuItem("Tools/Enemy Editor")]    
     private static void Init()
     {
         var window = (EnemyEditor)GetWindow(typeof(EnemyEditor));
+        window.minSize = new Vector2(300,600);
+    }
+
+    private void OnEnable()
+    {
+        prefabsToLoad = Resources.LoadAll("Enemies", typeof(GameObject));
     }
 
     private void OnGUI()
-    {    
-        for(int i = 0; i<prefabsToLoad.Length; i++)
+    {
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Width(250), GUILayout.Height(650));
+
+        for (int i = 0; i<prefabsToLoad.Length; i++)
         {
             GameObject prefab = (GameObject)prefabsToLoad[i];
             BaseEnemy enemy = prefab.GetComponent<BaseEnemy>();
@@ -39,7 +49,10 @@ public class EnemyEditor : EditorWindow
                 enemyDatas.Add(prefab.name, new EnemyData(enemy.MaxHealth, enemy.UnitsGiven));
             }
             EditorGUILayout.LabelField(prefab.name, EditorStyles.boldLabel);
-            GUI.DrawTexture(new Rect(80, 5+ (126 * i), 64, 64), ConvertToTexture(prefab.GetComponent<SpriteRenderer>().sprite), ScaleMode.ScaleToFit);
+            if(prefab.GetComponent<SpriteRenderer>() != null)
+            {
+                GUI.DrawTexture(new Rect(80, 5 + (126 * i), 64, 64), ConvertToTexture(prefab.GetComponent<SpriteRenderer>().sprite), ScaleMode.ScaleToFit);
+            }
 
             EditorGUILayout.LabelField("\n");
             EditorGUILayout.LabelField("\n");
@@ -53,6 +66,7 @@ public class EnemyEditor : EditorWindow
 
         SaveButton();
         ResetButton();
+        EditorGUILayout.EndScrollView();
 
     }
 

@@ -127,7 +127,7 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    public void PlayHitAnimation()
+    public virtual void PlayHitAnimation()
     {
         if(animator != null)
         {

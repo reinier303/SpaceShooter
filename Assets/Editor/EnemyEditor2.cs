@@ -205,9 +205,15 @@ public class EnemyEditor2 : EditorWindow
 
     private void InfoBoxes()
     {
+        float currentHealth = 0;
+        float currentUnits = 0;
         EditorGUILayout.HelpBox("Drag a sprite into the window to replace the current sprite", MessageType.Info);
-        float currentHealth = currentPrefab.GetComponent<BaseEnemy>().MaxHealth;
-        float currentUnits = currentPrefab.GetComponent<BaseEnemy>().UnitsGiven;
+        if(currentPrefab != null)
+        {
+            currentHealth = currentPrefab.GetComponent<BaseEnemy>().MaxHealth;
+            currentUnits = currentPrefab.GetComponent<BaseEnemy>().UnitsGiven;
+        }
+        
 
         if (draggedSprite != null || enemyDatas[currentPrefab.name].Health != currentHealth || enemyDatas[currentPrefab.name].UnitsGiven != currentUnits)
         {

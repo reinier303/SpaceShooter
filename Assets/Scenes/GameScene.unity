@@ -7224,7 +7224,7 @@ AudioSource:
   m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -8755,7 +8755,7 @@ PrefabInstance:
     - target: {fileID: 3465279618175913428, guid: 81625ada7c19ee1458f03e358f21aa1a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3465279618175913436, guid: 81625ada7c19ee1458f03e358f21aa1a,
         type: 3}

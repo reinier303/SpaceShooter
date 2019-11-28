@@ -20,18 +20,29 @@ public class PlayerData
         Instance = this;
     }
 
-    public PlayerData(PlayerStats player)
+    public PlayerData(PlayerStats player = null, Dictionary<string, float> stats = null, Dictionary<string, bool> unlockables = null)
     {
-        Debug.Log(player.Stats.Count);
-        //Dictionaries
-        Stats = player.Stats;
-        Unlockables = player.Unlockables;
-        ShopItems = player.ShopItems;
+        if (stats != null)
+        {
+            Stats = stats;
+        }
+        if (stats != null)
+        {
+            Unlockables = unlockables;
+        }
+        if (player != null)
+        {
+            Debug.Log(player.Stats.Count);
+            //Dictionaries
+            Stats = player.Stats;
+            Unlockables = player.Unlockables;
+            ShopItems = player.ShopItems;
 
-        Debug.Log(Stats);
+            Debug.Log(Stats);
 
-        //Units
-        Units = player.Units;
-        TotalUnits = player.TotalUnits;
+            //Units
+            Units = player.Units;
+            TotalUnits = player.TotalUnits;
+        }
     }
 }

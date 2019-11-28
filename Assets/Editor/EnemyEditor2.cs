@@ -214,10 +214,12 @@ public class EnemyEditor2 : EditorWindow
             currentUnits = currentPrefab.GetComponent<BaseEnemy>().UnitsGiven;
         }
         
-
-        if (draggedSprite != null || enemyDatas[currentPrefab.name].Health != currentHealth || enemyDatas[currentPrefab.name].UnitsGiven != currentUnits)
+        if(currentPrefab != null)
         {
-            EditorGUILayout.HelpBox("Press Save to save the changed properties, and press reset to return them to the prefabs values.", MessageType.Info);
+            if (draggedSprite != null || enemyDatas[currentPrefab.name].Health != currentHealth || enemyDatas[currentPrefab.name].UnitsGiven != currentUnits)
+            {
+                EditorGUILayout.HelpBox("Press Save to save the changed properties, and press reset to return them to the prefabs values.", MessageType.Info);
+            }
         }
     }
 }
